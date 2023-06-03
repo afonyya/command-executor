@@ -1,21 +1,21 @@
-import { ChildProcessWithoutNullStreams } from 'child_process'
-import { IStreamLogger } from './stream-logger.interface'
+import { ChildProcessWithoutNullStreams } from 'child_process';
+import { IStreamLogger } from './stream-logger.interface';
 
 export class StreamHandler {
   constructor(private logger: IStreamLogger) {}
 
   processOutput(stream: ChildProcessWithoutNullStreams) {
     stream.stdout.on('data', (data: any) => {
-      this.logger.log(data.toString())
-    })
+      this.logger.log(data.toString());
+    });
 
     stream.stderr.on('data', (data: any) => {
-      this.logger.log(data.toString())
-      console.log('wtf?')
-    })
+      this.logger.log(data.toString());
+      console.log('wtf?');
+    });
 
     stream.on('close', () => {
-      this.logger.end()
-    })
+      this.logger.end();
+    });
   }
 }
