@@ -10,8 +10,7 @@ export class StreamHandler {
     });
 
     stream.stderr.on('data', (data: any) => {
-      this.logger.log(data.toString());
-      console.log('wtf?');
+      this.logger.error(data.toString());
     });
 
     stream.on('close', () => {
